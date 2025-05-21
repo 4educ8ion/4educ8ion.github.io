@@ -26,12 +26,12 @@
     const destination = surveyLinks[surveyNumber] + '?participant_id=' + participant_id;
 
     // Logging to Google Form (replace with your real IDs!)
-    fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
+    fetch('https://docs.google.com/forms/d/e/1L6i3IvjFL75m14xcvRD8Ra902W6oTkg4upCTYjaUh3E/formResponse', {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: 'entry.YOUR_ENTRY_ID_PID=' + encodeURIComponent(participant_id) +
-            '&entry.YOUR_ENTRY_ID_SURVEY=' + surveyNumber
+            '&entry.YOUR_ENTRY_ID_SURVEY=' + encodeURIComponent(surveyNumber)
     });
 
     // Redirect
