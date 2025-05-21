@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Weiterleitung...</title>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const participant_id = urlParams.get('participant_id') || 'UNKNOWN';
+
+    // Choose a random survey (1 to 9)
+    const surveyNumber = Math.floor(Math.random() * 9) + 1;
+
+    // Survey destination links
+    const surveyLinks = {
+      1: "https://run.pavlovia.org/you/survey1",
+      2: "https://run.pavlovia.org/you/survey2",
+      3: "https://run.pavlovia.org/you/survey3",
+      4: "https://run.pavlovia.org/you/survey4",
+      5: "https://run.pavlovia.org/you/survey5",
+      6: "https://run.pavlovia.org/you/survey6",
+      7: "https://run.pavlovia.org/you/survey7",
+      8: "https://run.pavlovia.org/you/survey8",
+      9: "https://run.pavlovia.org/you/survey9"
+    };
+
+    const destination = surveyLinks[surveyNumber] + '?participant_id=' + participant_id;
+
+    // Logging to Google Form (replace with your real IDs!)
+    fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'entry.YOUR_ENTRY_ID_PID=' + encodeURIComponent(participant_id) +
+            '&entry.YOUR_ENTRY_ID_SURVEY=' + surveyNumber
+    });
+
+    // Redirect
+    window.location.href = destination;
+  </script>
+</head>
+<body>
+  <p>Sie werden weitergeleitet...</p>
+</body>
+</html>
+
