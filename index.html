@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,31 +8,44 @@
     const urlParams = new URLSearchParams(window.location.search);
     const participant_id = urlParams.get('participant_id') || 'UNKNOWN';
 
-    // Choose a random survey (1 to 9)
-    const surveyNumber = Math.floor(Math.random() * 9) + 1;
+    // Choose a random survey (1 to 18) and list assignment (1 to 6)
+    const surveyNumber = Math.floor(Math.random() * 18) + 1;
+    const list_assignment = Math.floor(Math.random() * 6) + 1;
 
     // Survey destination links
     const surveyLinks = {
-      1: "https://run.pavlovia.org/you/survey1",
-      2: "https://run.pavlovia.org/you/survey2",
-      3: "https://run.pavlovia.org/you/survey3",
-      4: "https://run.pavlovia.org/you/survey4",
-      5: "https://run.pavlovia.org/you/survey5",
-      6: "https://run.pavlovia.org/you/survey6",
-      7: "https://run.pavlovia.org/you/survey7",
-      8: "https://run.pavlovia.org/you/survey8",
-      9: "https://run.pavlovia.org/you/survey9"
+      1: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      2: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      3: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      4: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      5: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      6: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      7: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      8: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      9: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      10: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      11: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      12: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      13: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      14: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      15: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      16: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      17: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea",
+      18: "https://run.pavlovia.org/pavlovia/survey-2024.2.0/?surveyId=f1ed7eec-2368-4b8b-a829-7f2623955cea"
     };
 
-    const destination = surveyLinks[surveyNumber] + '?participant_id=' + participant_id;
+    const destination = surveyLinks[surveyNumber] +
+      '?participant_id=' + encodeURIComponent(participant_id) +
+      '&list_assignment=' + encodeURIComponent(list_assignment);
 
-    // Logging to Google Form (replace with your real IDs!)
+    // Logging to Google Form (replace with your real entry IDs)
     fetch('https://docs.google.com/forms/d/e/1L6i3IvjFL75m14xcvRD8Ra902W6oTkg4upCTYjaUh3E/formResponse', {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'entry.YOUR_ENTRY_ID_PID=' + encodeURIComponent(participant_id) +
-            '&entry.YOUR_ENTRY_ID_SURVEY=' + encodeURIComponent(surveyNumber)
+      body: 'entry.1201662675=' + encodeURIComponent(participant_id) +
+            '&entry.1146067680=' + encodeURIComponent(surveyNumber) +
+            '&entry.1604179950=' + encodeURIComponent(list_assignment)
     });
 
     // Redirect
@@ -42,4 +56,3 @@
   <p>Sie werden weitergeleitet...</p>
 </body>
 </html>
-
